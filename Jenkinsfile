@@ -15,7 +15,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    dockerImage = docker.build('thedevops.solutions/dev/java')
+                    dockerImage = docker.build('thedevops.solutions/qa/java')
                 }
             }
         }
