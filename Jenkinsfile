@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_REGISTRY_CREDENTIALS = 'harbor' // Replace with your credentials ID
-        DOCKER_REGISTRY_URL = 'https://172.31.36.3'
+        DOCKER_REGISTRY_URL = 'https://thedevops.solutions'
     }
 
     stages {
