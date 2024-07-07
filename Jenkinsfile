@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_REGISTRY_CREDENTIALS = 'harbor' // Replace with your credentials ID
+        DOCKER_REGISTRY_URL = 'https://172.31.36.3'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,14 +15,16 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    docker.build('172.31.36.3/dev/java')
+                    dockerImage = docker.build('172.31.36.3/dev/java')
                 }
             }
         }
         stage('Push Image') {
             steps {
                 script {
-                    sh 'docker push 172.31.36.3/dev/java'
+                    docker.withRegistry(DOCKER_REGISTRY_URL, DOCKER_REGISTRY_CREDENTIALS) {
+                        dockerImage.push()
+                    }
                 }
             }
         }
