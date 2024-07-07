@@ -14,5 +14,12 @@ pipeline {
                 }
             }
         }
+        stage('Push Image') {
+            steps {
+                script {
+                    sh 'docker push 172.31.36.3/dev/java'
+                }
+            }
+        }
     }
 }
